@@ -1,0 +1,9 @@
+name: ConfigAPI
+description: $description
+version: '${version}'
+
+main: com.mdt168.configapi.ConfigAPI
+api-version: '1.21'
+load: STARTUP
+
+authors: [ MDT168 ]
