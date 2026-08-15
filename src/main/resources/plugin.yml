@@ -3,7 +3,7 @@ description: $description
 version: '${version}'
 
 main: com.mdt168.configapi.ConfigAPI
-api-version: '1.21'
+api-version: '1.18'
 load: STARTUP
 
 authors: [ MDT168 ]
