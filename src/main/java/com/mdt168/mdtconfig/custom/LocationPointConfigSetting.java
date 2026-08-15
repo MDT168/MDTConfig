@@ -33,8 +33,8 @@ public class LocationPointConfigSetting extends TypedMapConfigSetting<Double> {
         return getValue("z");
     }
 
-    private static List<ConfigMapEntry<Double>> toEntries(double x, double y, double z) {
-        List<ConfigMapEntry<Double>> entries = new ArrayList<>();
+    private static List<ConfigMapEntry<? extends Double>> toEntries(double x, double y, double z) {
+        List<ConfigMapEntry<? extends Double>> entries = new ArrayList<>();
         entries.add(new ConfigMapEntry<>("x", ConfigDataTypes.DOUBLE, x));
         entries.add(new ConfigMapEntry<>("y", ConfigDataTypes.DOUBLE, y));
         entries.add(new ConfigMapEntry<>("z", ConfigDataTypes.DOUBLE, z));
