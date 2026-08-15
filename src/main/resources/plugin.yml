@@ -1,8 +1,8 @@
-name: ConfigAPI
+name: MDTConfig
 description: $description
 version: '${version}'
 
-main: com.mdt168.configapi.ConfigAPI
+main: com.mdt168.mdtconfig.MDTConfig
 api-version: '1.18'
 load: STARTUP
 

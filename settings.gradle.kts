@@ -1,1 +1,1 @@
-rootProject.name = "ConfigAPI"
+rootProject.name = "MDTConfig"
