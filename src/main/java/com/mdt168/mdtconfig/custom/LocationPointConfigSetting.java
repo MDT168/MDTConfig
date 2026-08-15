@@ -12,29 +12,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-public class LocationPointConfigSetting extends TypedMapConfigSetting<Double> {
+public class LocationPointConfigSetting extends MapConfigSetting {
     public LocationPointConfigSetting(@NotNull String name, @NotNull String comment, double defaultX, double defaultY, double defaultZ, @NotNull ConfigType configType) {
         this(name, comment, defaultX, defaultY, defaultZ, configType, null);
     }
 
-    public LocationPointConfigSetting(@NotNull String name, @NotNull String comment, double defaultX, double defaultY, double defaultZ, @NotNull ConfigType configType, @Nullable BiFunction<Map<String, Double>, ConfigSetting<Map<String, Double>>, Map<String, Double>> sanitizer) {
-        super(name, comment, ConfigDataTypes.DOUBLE, toEntries(defaultX, defaultY, defaultZ), configType, sanitizer);
+    public LocationPointConfigSetting(@NotNull String name, @NotNull String comment, double defaultX, double defaultY, double defaultZ, @NotNull ConfigType configType, @Nullable BiFunction<Map<String, Object>, ConfigSetting<Map<String, Object>>, Map<String, Object>> sanitizer) {
+        super(name, comment, toEntries(defaultX, defaultY, defaultZ), configType, sanitizer);
     }
 
     public double getX() {
-        return getValue("x");
+        return (double) getValue("x");
     }
 
     public double getY() {
-        return getValue("y");
+        return (double) getValue("y");
     }
 
     public double getZ() {
-        return getValue("z");
+        return (double) getValue("z");
     }
 
-    private static List<ConfigMapEntry<? extends Double>> toEntries(double x, double y, double z) {
-        List<ConfigMapEntry<? extends Double>> entries = new ArrayList<>();
+    private static List<ConfigMapEntry<?>> toEntries(double x, double y, double z) {
+        List<ConfigMapEntry<?>> entries = new ArrayList<>();
         entries.add(new ConfigMapEntry<>("x", ConfigDataTypes.DOUBLE, x));
         entries.add(new ConfigMapEntry<>("y", ConfigDataTypes.DOUBLE, y));
         entries.add(new ConfigMapEntry<>("z", ConfigDataTypes.DOUBLE, z));

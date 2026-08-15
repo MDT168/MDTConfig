@@ -1,6 +1,7 @@
 package com.mdt168.mdtconfig.datatypes;
 
 import com.mdt168.mdtconfig.ConfigSetting;
+import com.mdt168.mdtconfig.resources.ConfigMapEntry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

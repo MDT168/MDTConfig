@@ -4,6 +4,7 @@ import com.mdt168.mdtconfig.ConfigSetting;
 import com.mdt168.mdtconfig.datatypes.ConfigDataType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.Objects;
 
 public class ConfigMapEntry<T> {

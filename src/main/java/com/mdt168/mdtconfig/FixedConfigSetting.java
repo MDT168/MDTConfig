@@ -13,17 +13,7 @@ public class FixedConfigSetting<T> extends ConfigSetting<T> {
 
     @Override
     public final @NotNull T modifyValue(T originalValue) {
-        return originalValue;
-    }
-
-    @Override
-    public final T getValue() {
         return getDefaultValue();
-    }
-
-    @Override
-    protected final ConfigSetting.Values<T> getRawValue() {
-        return new Values<>(getType().serialize(getDefaultValue()), getDefaultValue());
     }
 
     /**

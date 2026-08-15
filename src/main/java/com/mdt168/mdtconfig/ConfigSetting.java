@@ -59,12 +59,6 @@ public class ConfigSetting<T> {
         rawData.clear();
     }
 
-
-
-    public ConfigSetting<T> register() {
-        return manager.register(this);
-    }
-
     /**
      * Called on creation, to modify the comment before put into the final variable
      * @return The final comment after modification
@@ -103,6 +97,16 @@ public class ConfigSetting<T> {
 
     public String getName() {
         return name;
+    }
+
+
+    /**
+     * Called before passing the value to the data type to serialize
+     * @param value the value of the config setting
+     * @return The value after serializing
+     */
+    public Object serialize(T value) {
+        return type.serialize(value);
     }
 
     protected void illegalDefault(String message) {
@@ -145,7 +149,7 @@ public class ConfigSetting<T> {
     }
 
     protected Values<T> getRawValue() {
-        Object val = rawData.computeIfAbsent(config, manager::loadFor).computeIfAbsent(key, k -> type.serialize(defaultValue));
+        Object val = rawData.computeIfAbsent(config, manager::loadFor).computeIfAbsent(key, k -> serialize(defaultValue));
         if (val == null && !type.shouldAllowNulls()) {
             throw new ConfigNullValueException(key, getFilePath());
         }
@@ -186,7 +190,7 @@ public class ConfigSetting<T> {
         } else {
             this.value = modifyValue(value);
         }
-        this.raw = type.serialize(this.value);
+        this.raw = serialize(this.value);
     }
 
     public String getComment() {
@@ -215,8 +219,8 @@ public class ConfigSetting<T> {
     }
 
     public String getSerializedDefaultValue() {
-        Object obj = type.serialize(getDefaultValue());
-        return String.valueOf(obj == null ? "None" : obj);
+        Object obj = serialize(getDefaultValue());
+        return String.valueOf(obj == null ? "Not Set" : obj);
     }
 
     public record Values<T>(Object rawValue, T value) {}

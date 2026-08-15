@@ -1,5 +1,7 @@
 package com.mdt168.mdtconfig.datatypes;
 
+import com.mdt168.mdtconfig.resources.ConfigMapEntry;
+
 import java.util.*;
 
 public class ConfigDataTypes {
@@ -24,6 +26,7 @@ public class ConfigDataTypes {
     public static final UUIDToWorldDataType WORLD_FROM_UUID = new UUIDToWorldDataType();
     public static final PotionEffectTypeDataType POTION_EFFECT_TYPE = new PotionEffectTypeDataType();
     public static final ObjectDataType OBJECT = new ObjectDataType();
+    public static final MapDataType MAP = new MapDataType(new HashMap<>());
 
     public static <T> ConfigDataType<Optional<T>> optionalOf(ConfigDataType<T> type) {
         return new OptionalDataType<>(type);
@@ -45,8 +48,8 @@ public class ConfigDataTypes {
         return new SetDataType<>(dataType);
     }
 
-    public static <V> ConfigDataType<Map<String, V>> mapOf(ConfigDataType<V> dataType) {
-        return new MapDataType<>(dataType);
+    public static ConfigDataType<Map<String, Object>> mapOf(Map<String, ConfigMapEntry<?>> entries) {
+        return new MapDataType(entries);
     }
 
     private ConfigDataTypes() {}
