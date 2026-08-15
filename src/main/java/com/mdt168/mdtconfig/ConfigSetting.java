@@ -30,7 +30,6 @@ public class ConfigSetting<T> {
         this(name, comment, type, defaultValue, configType, null);
     }
 
-    @SuppressWarnings("")
     public ConfigSetting(@NotNull String name, @NotNull String comment, @NotNull ConfigDataType<T> type, @NotNull T defaultValue, @NotNull ConfigType configType, @Nullable BiFunction<T, ConfigSetting<T>, T> sanitizer) {
         Objects.requireNonNull(defaultValue, "defaultValue for '" + name + "' Config Setting cannot be null");
         this.name = name;
@@ -40,6 +39,20 @@ public class ConfigSetting<T> {
         this.type = type;
         this.key = Helper.toYamlKey(name);
         this.sanitizer = sanitizer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ConfigSetting<?> other)) return false;
+
+        return key.equals(other.key)
+                && config.getExtraPath().equals(other.config.getExtraPath());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(key, config.getExtraPath());
     }
 
     public static void clearRawData() {

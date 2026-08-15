@@ -1,16 +1,14 @@
 package com.mdt168.mdtconfig;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,33 +16,39 @@ public class ConfigManager {
     private static final List<ConfigManager> MANAGERS = new ArrayList<>();
     private static final Yaml YAML = new Yaml();
 
-    private final List<ConfigSetting<?>> settings = new ArrayList<>();
-    private final Plugin plugin;
+    private final Set<ConfigSetting<?>> settings = new LinkedHashSet<>();
     private final Path dataFolder;
     private final Logger logger;
     public ConfigManager(Plugin plugin) {
-        this.plugin = plugin;
-        this.dataFolder = plugin.getDataFolder().toPath();
-        this.logger = plugin.getLogger();
+        this(plugin.getDataFolder().toPath(), plugin.getLogger());
     }
 
-    public Plugin getPlugin() {
-        return plugin;
+    public ConfigManager(@NotNull Path dataFolder, @NotNull Logger logger) {
+        this.dataFolder = dataFolder;
+        this.logger = logger;
     }
 
     public <T extends ConfigSetting<?>> T register(T setting) {
-        setting.init(this);
-        if (!settings.contains(setting)) {
-            settings.add(setting);
+        if (settings.add(setting)) {
+            setting.init(this);
         }
         return setting;
     }
+
 
     public void reloadFromConfig() {
         ConfigSetting.clearRawData();
         for (ConfigSetting<?> setting : settings) {
             setting.reloadValueFromRawValue();
         }
+    }
+
+    /**
+     * Unregisters a specific config setting, removing it from the set and config file
+     * @return {@code true} if the config setting was removed, false if it didn't exist
+     */
+    public boolean unregisterConfigSetting(ConfigSetting<?> setting) {
+        return settings.remove(setting);
     }
 
     protected Map<String, Object> loadFor(ConfigType type) {

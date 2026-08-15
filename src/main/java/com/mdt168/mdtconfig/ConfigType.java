@@ -10,7 +10,7 @@ public class ConfigType {
     private final String extraPath, prefix;
 
     public ConfigType(@NotNull String extraPath, @Nullable String prefix) {
-        this.extraPath = extraPath;
+        this.extraPath = "configs/" + extraPath;
         if (prefix == null) {
             this.prefix = "";
             return;
@@ -37,6 +37,6 @@ public class ConfigType {
     }
 
     public Path getPath(Path dataFolder) {
-        return dataFolder.resolve("configs/" + extraPath);
+        return dataFolder.resolve(extraPath);
     }
 }

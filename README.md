@@ -52,6 +52,26 @@ Add the dependency and repo in `pom.xml`:
     </dependency>
 </dependencies>
 ```
+# Final Setup
+After you you have added the `gradle/maven` dependency, now you need to depend on `MDTConfig` in your plugin yml file. The next part covers how to do so in both **Spigot** and **PaperMC**:
+
+## Spigot (`plugin.yml`)
+Find your `plugin.yml` file in the `resources` directory of your project, depend on MDTConfig:
+```yml
+depend: [MDTConfig] 
+```
+If you already had `depend` before, just add `MDTConfig` to the list
+
+## PaperMC (`paper-plugin.yml`)
+Find your `paper-plugin.yml` file in the `resources` directory of your project, depend on MDTConfig:
+```yml
+dependencies:
+  server:
+    MDTConfig:
+      load: AFTER
+      required: true
+```
+Or you can choose Boostrap if you want an early load
 
 # Getting Started
-To know how to use MDTConfig and get started right away, visit [Getting Started](https://github.com/MDT168/MDTConfig/wiki/Getting-Started) Wiki Page
+To know how to use MDTConfig and get started right away, visit The [Getting Started](https://github.com/MDT168/MDTConfig/wiki/Getting-Started) Wiki Page
