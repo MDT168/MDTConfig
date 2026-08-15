@@ -13,11 +13,11 @@ import java.util.function.BiFunction;
 
 public class MapConfigSetting extends TypedMapConfigSetting<Object> {
 
-    public MapConfigSetting(@NotNull String name, @NotNull String comment, @NotNull List<@NotNull ConfigMapEntry<Object>> defaultValue, @NotNull ConfigType configType) {
+    public MapConfigSetting(@NotNull String name, @NotNull String comment, @NotNull List<@NotNull ConfigMapEntry<?>> defaultValue, @NotNull ConfigType configType) {
         super(name, comment, ConfigDataTypes.OBJECT, defaultValue, configType);
     }
 
-    public MapConfigSetting(@NotNull String name, @NotNull String comment, @NotNull List<@NotNull ConfigMapEntry<Object>> defaultValue, @NotNull ConfigType configType, @Nullable BiFunction<Map<String, Object>, ConfigSetting<Map<String, Object>>, Map<String, Object>> sanitizer) {
+    public MapConfigSetting(@NotNull String name, @NotNull String comment, @NotNull List<@NotNull ConfigMapEntry<?>> defaultValue, @NotNull ConfigType configType, @Nullable BiFunction<Map<String, Object>, ConfigSetting<Map<String, Object>>, Map<String, Object>> sanitizer) {
         super(name, comment, ConfigDataTypes.OBJECT, defaultValue, configType, sanitizer);
     }
 }
