@@ -8,12 +8,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains:annotations:26.0.2")
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
 tasks {
