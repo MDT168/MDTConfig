@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // Your other dependencies
-    compileOnly 'com.github.MDT168:MDTConfig:v1.0.0'
+    compileOnly 'com.github.MDT168:MDTConfig:v1.0.1'
 }
 ```
 
@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
     // Your other dependencies
-    compileOnly("com.github.MDT168:MDTConfig:v1.0.0")
+    compileOnly("com.github.MDT168:MDTConfig:v1.0.1")
 }
 ```
 
@@ -47,7 +47,7 @@ Add the dependency and repo in `pom.xml`:
     <dependency>
         <groupId>com.github.MDT168</groupId>
         <artifactId>MDTConfig</artifactId>
-        <version>v1.0.0</version>
+        <version>v1.0.1</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
